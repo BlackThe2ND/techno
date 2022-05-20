@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container ">
+    <br>
+<center><h1>Index of Learning Style Questionnaires</h1></center>
+    <h4>Directions:</h4>
+    <p>You may only choose one answer for each question, and you must answer all questions before you can submit the form. If both answers to a question seem to apply to you, choose the one that applies more frequently throughout all your courses. When you have selected answers to all 44 questions, click on the "Submit" button at the end of the form.</p>
+<div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
+ <form method='post' action=''>
+    {% csrf_token %}
+    {% for q  in questions%}
+    <div class="form-group">
+      <label for="question">{{q.question}}</label>
+    </div>
+    <div class="form-check">
+        <div class="form-check">
+            <label class="form-check-label" for="gridRadios1">
+                {{q.option1}}
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="gridRadios2">
+                {{q.option2}}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="text" name="{{q.question}}" id="gridRadios1" value="">
+            <label class="form-check-label" for="gridRadios1">
+                {{q.ans1}}
+            </label>
+        </div>
+        <br>
+    </div>
+    {% endfor %}
+    <input id='timer' type='hidden' name="timer" value="">
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+    {% block script %}
+        <script>
+            console.log('hello world')
+            const timer=document.getElementById('displaytimer')
+            console.log(timer.textContent)
+            const inputtag = document.getElementById('timer')
+            t=0
+            setInterval(()=>{
+                t+=1
+                timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
+                inputtag.value = t
+            },1000)
+        </script>
+    {% endblock script %}
+</div>
+{% endblock %}

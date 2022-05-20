@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">Videos Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">{{classes.section}}</h3>
+                </a></strong>
+                <ul>
+                    {% for vid in videos %}
+
+                     <li class="row mt-3"> <h5>Video Title:</h5><h5 class="ml-2"><a href="{% url 'video-detail' vid.id %}">{{vid.title}}</a></h5></li>
+                    <p>{{vid.description}}</p>
+
+                    <video width="400" src="{{vid.vid.url}}" controls></video>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

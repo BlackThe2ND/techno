@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">Exercises Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+    <form>
+
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <ul>
+                    {% for exercise in exercises %}
+
+                     <li class="row mt-3"> <h5>Exercise Title:</h5><h5 class="ml-2"><a href="{% url 'exercise-detail' exercise.id %}">{{exercise.title}}</a></h5></li>
+                    <p>{{exercise.description}}</p>
+                        <div>
+                            <a href="{% url 'exercise-detail' exercise.id %}">
+
+                                <img class="ml-4 mb-2 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'exercise.png' %}">
+                                </a>
+                        </div>
+                                <a href="{{exercise.exercise.url}}" class="btn btn-primary ml-3 mb-2 mt-4 mr-4"
+                                   target="_blank">Download PPT</a>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

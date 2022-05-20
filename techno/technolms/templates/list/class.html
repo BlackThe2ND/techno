@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <style>
+        .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.2s;
+        }
+        .card:hover {
+        box-shadow: 8px 8px 10px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+        padding: 4px 16px;
+        }
+        img {
+        border-radius: 5px 5px 5px 5px;
+        }
+    </style>
+</head>
+<body>
+<h1 class="container">CLASSROOM</h1>
+
+<div class="">
+    <div class="container">
+    <a href="{% url 'new-class' %}"
+       class="btn btn-primary container container">Create Class and Chapter</a>
+        </div>
+    <form>
+    {{ form.as_p }}
+    </form>
+    <div class="row d-flex justify-content-sm-center">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                {% for classes in class %}
+
+                <h3>{{classes.section}}</h3>
+                <p>{{classes.subject}}</p>
+                {% for chapters in classes.chapter_set.all %}
+                <a href="{% url 'test-chapter' chapters.id %}">
+                    <h4>Chapter - {{chapters.title}}</h4></a>
+                    <p>{{chapters.description}}</p>
+                {% endfor %}
+                {% endfor %}
+
+                <hr>
+                <a class="ml-3" href="{#}">Edit Video Content</a>
+                <a class="ml-2" href="{#}">Delete Video Content</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

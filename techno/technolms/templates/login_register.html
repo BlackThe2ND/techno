@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style>
+        function myFunction() {
+        var x = document.getElementById("exampleInputPassword1");
+        if (x.type === "password") {
+        x.type = "text";
+  }     else {
+        x.type = "password";
+  }
+}
+    </style>
+</head>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="login--wrapper">
+        {% if page == 'login' %}
+<form method="post" class="form">
+    {% csrf_token %}
+        <center><p><strong><h2>LOGIN TO START LEARNING </h2></strong></p></center>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+        <p>Don't have an Account? <a href="{% url 'register' %}">Register</a></p>
+
+</form>
+        {% else %}
+        <form method="post">
+            <center><p><strong><h2 class="mt-5">REGISTER</h2></strong></p></center>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">{{ field.label }}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p>Already have an Account? <a href="{% url 'login' %}">Login</a></p>
+
+        </form>
+        {% endif %}
+      </div>
+</div>
+
+{% endblock %}

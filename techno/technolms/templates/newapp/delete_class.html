@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<center><h2 class="container">Delete Classroom</h2></center>
+<br/><br/>
+<br/>
+<form method="post" class="container">
+
+      {% csrf_token %}
+    <center><strong> Are your sure you want to Delete? </strong></center> <br/>
+    <center><button type="submit" class="btn btn-secondary">Delete Classroom</button>
+    <a href="{% url 'home' %}">Cancel</a></center>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container row login--wrapper">
+<div class="col-md-6">
+<center><p><strong><h2 class="">CREATE PROFILE</h2></strong></p></center>
+
+{% if profile.status == True %}
+<h1>You Already Have Profile Data, Please Click Home Button</h1>
+{% else %}
+    <div class="card card-body">
+<form method="post" class="container" id="user_id" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+        {{ chapter_form.as_p }}
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+    </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

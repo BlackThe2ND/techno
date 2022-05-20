@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<center><h1 class="container">List of Audios</h1></center>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+    <form>
+
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">{{classes.section}}</h3>
+                </a></strong>
+                <ul>
+                    {% for audio in audios %}
+
+                     <li class="row mt-3"> <h5>Audio Title:</h5><h5 class="ml-2"><a href="{% url 'audio-detail' audio.id %}">{{audio.title}}</a></h5></li>
+                    <p>{{audio.description}}</p>
+                        <div>
+                             <div class="">
+                                    <a href="{% url 'audio-detail' audio.id %}">
+                                <img class="ml-5 mb-2 mt-2 mr-4" style="opacity: 0.2" height="200" width="250" src="{% static 'audio.png' %}">
+                                </a>
+                                </div>
+                                <audio class="ml-4 mb-2 mt-2 mr-4"  src="{{audio.aud.url}}" controls>Play Audio Recording</audio>
+                            </div>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

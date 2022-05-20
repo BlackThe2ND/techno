@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container row login--wrapper">
+    <div class="col-md-6">
+<h2 class="container">Edit Topic List and Reference Link Content</h2>
+<div class="container">
+<div class="card card-body">
+<form method="post" class="container">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit" class="btn btn-secondary">Update</button>
+    <a href="{% url 'home' %}">Cancel</a>
+</form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

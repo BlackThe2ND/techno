@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">Topic List and References (LINKS) Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+    <form>
+
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <ul>
+                    {% for tore in tores %}
+
+                     <li class="row mt-3"> <h5>LINKS Title:</h5><h5 class="ml-2"><a href="{% url 'tore-detail' tore.id %}">{{tore.title}}</a></h5></li>
+                    <p>{{tore.description}}</p>
+                        <div>
+                            <a href="{% url 'tore-detail' tore.id %}">
+
+                                <img class="ml-4 mb-2 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'tore.png' %}">
+                                </a>
+                        </div>
+                                <a href="{{tore.tore.url}}" class="btn btn-primary ml-3 mb-2 mt-4 mr-4"
+                                   target="_blank">Click the Link</a>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

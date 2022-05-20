@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h2 class="container">Delete Pre-Test Question</h2>
+<br/><br/>
+<br/>
+<form method="post" class="container">
+    <h3>WARNING! Delete?</h3>
+      {% csrf_token %}
+    <strong> Are your sure you want to Delete? </strong> <br/>
+    <button type="submit" class="btn btn-secondary">Delete Question</button>
+    <a href="{% url 'home' %}">Cancel</a>
+</form>
+{% endblock %}

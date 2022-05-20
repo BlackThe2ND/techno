@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<center><h1>LIST OF STUDENTS</h1></center>
+{% for student in students %}
+<div class="container">
+    <form>
+    {{ form.as_p }}
+    </form>
+    <div class="col container">
+                <br>
+        <div class="card ml-2" style="border:2px black solid">
+            <div class="row">
+                    <div class="">
+                        <div class="col">
+                        <img class="ml-4 mt-4 mb-4" width="300" src="{{student.img.url}}">
+                        </div>
+                    </div>
+
+                <div class=""><div class="col ml-3 mt-4">
+                    <list><h4 class="">
+                   Name: {{student.first_name}} {{student.last_name}}</h4>
+                    </list>
+                    {% for styles in student.style1_set.all %}
+                    <h4>Username: {{styles.username}}</h4>
+                    <p class=""><h5>Age:</h5> {{student.age}}</p>
+                    <p><h5>Section:</h5> {{student.section}}</p>
+                    <p><strong>LO1:</strong> {{styles.LO1}}</p>
+                    {% endfor %}
+                    {% for styles2 in student.style2_set.all %}
+                    <p><strong>LO2:</strong> {{styles2.LO2}}</p>
+                    {% endfor %}
+                </div>
+                    </div>
+
+                <div class="">
+                    <div class="col mt-4">
+                    <h4 class="ml-4">Chapter Quiz Scores:</h4>
+                    {% for results in student.chapterresult2_set.all %}
+                            <p class="ml-5">{{results.Quiz_Score}}</p>
+                    {% endfor %}
+                        <div class="col">
+                    <h4 class="ml-2">Pre-Test Score:</h4>
+                    {% for results in student.pretest_result2_set.all %}
+                    <p class="ml-4">{{results.pre_test_result}}</p>
+                    {% endfor %}
+                            </div>
+                </div>
+                    </div>
+
+                </div>
+
+        </div>
+        </div>
+</div>
+                {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">Image Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+    <form>
+
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">{{classes.section}}</h3>
+                </a></strong>
+                <ul>
+                    {% for img in images %}
+
+                     <li class="row mt-3"> <h5>Image Title:</h5><h5 class="ml-2"><a href="{% url 'image-detail' img.id %}">{{img.title}}</a></h5></li>
+                    <p>{{img.description}}</p>
+
+                    <img width="400" src="{{img.img.url}}">
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

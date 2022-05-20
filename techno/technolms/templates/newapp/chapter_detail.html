@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<br>
+<center><h1 class="container">CHAPTER - {{chapter_details.title}}</h1></center>
+
+<div class="d-flex flex-wrap ml-2">
+
+<table class="container">
+
+    <form>
+    {{ form.as_p }}
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container" style="border:1px black solid">
+            <img class="card-img-top" src="{% static 'lesson_header.png' %}">
+
+            <div class="card-body">
+                <ul>
+                <h3>{{chapter_details.title}}</h3>
+                <p>{{chapter_details.description}}</p>
+
+                    {% for lessons in chapter_details.lesson_set.all %}
+                    <li><h4><a href="{% url 'lesson-details' lessons.id %}">Lesson - {{lessons.title}}</a></h4></li>
+                    <p>{{lessons.description}}</p>
+
+                    {% endfor %}
+
+                </ul>
+                {% if user.is_superuser %}
+                <a href="{% url 'lesson-create2' chapter_details.id %}"
+                   class="btn btn-primary mr-1 ml-3"><i class="fa fa-plus-circle"></i>
+                    Create New Lesson
+                </a>
+                {% endif %}
+
+
+                <a href="{% url 'pre-test' chapter_details.id %}"
+                   class="btn btn-primary mr-1">
+                    START PRE-TEST
+                </a>
+
+                {% if chapt_result == 0 %}
+                <a href="{% url 'chapter-quiz' chapter_details.id %}"
+                   class="btn btn-primary mr-1">
+                    START CHAPTER QUIZ
+                </a>
+                {% else %}
+                {% if chapt_result < 70.0 %}
+
+                <a href="{% url 'chapter-quiz' chapter_details.id %}"
+                   class="btn btn-primary">
+                    RETAKE CHAPTER QUIZ
+                </a>
+
+                {% else %}
+
+                <a href="{% url 'chapter-quiz' chapter_details.id %}"
+                   class="btn btn-primary mr-1">
+                    START CHAPTER QUIZ
+                </a>
+
+                {% endif %}
+                {% endif %}
+                {% if user.is_superuser %}
+                <a href="{% url 'chapter-edit' chapter_details.id %}">
+                    <strong><img width="20" src="{% static 'edit.png' %}">Edit Chapter</strong></a>
+                <a class="ml-3" href="{% url 'chapter-delete' chapter_details.id %}">
+                    <strong><img style="opacity:0.6" width="20" src="{% static 'delete.png' %}">Delete Chapter</strong></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

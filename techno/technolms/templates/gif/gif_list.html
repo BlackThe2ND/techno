@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">GIF Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+    <form>
+
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+
+                <ul>
+                    {% for gif in gifs %}
+
+                     <li class="row mt-3"> <h5>DEMO Title:</h5><h5 class="ml-2"><a href="{% url 'gif-detail' gif.id %}">{{gif.title}}</a></h5></li>
+                    <p>{{gif.description}}</p>
+
+                    <img width="400" src="{{gif.gif.url}}">
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

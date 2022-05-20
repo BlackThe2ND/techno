@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <style>
+        .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.2s;
+        }
+        .card:hover {
+        box-shadow: 8px 8px 10px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+        padding: 4px 16px;
+        }
+        img {
+        border-radius: 5px 5px 5px 5px;
+        }
+    </style>
+</head>
+<body>
+<center><h1 class="container">Audio Content</h1></center>
+
+<div class="">
+    <div class="container">
+    <a href="{% url 'audio-create' audios.id %}"
+    class="btn btn-primary container container">Create New Audio Content</a>
+    </div>
+    <form>
+    {{ form.as_p }}
+        </form>
+    <div class="row d-flex justify-content-sm-center">
+        <div class="card mb-2 container">
+            <div class="card-body">
+
+                <h3>{{audios.title}}</h3>
+                <p>{{audios.description}}</p>
+
+                    <div class="col d-flex justify-content-sm-center">
+                        <div>
+                            <img style="opacity: 0.2" width="500" src="{% static 'audio.png' %}">
+                        <center><div>
+                            <audio src="{{audios.aud.url}}" controls></audio>
+                        </div></center>
+                        </div>
+                    </div>
+                <hr>
+                <a class="ml-3" href="{% url 'audio-edit' audios.id %}"><strong><img width="20" src="{% static 'edit.png' %}">Edit Audio Content</strong></a>
+                <a class="ml-2" href="{% url 'audio-delete' audios.id %}"><strong><img style="opacity:0.6" width="20" src="{% static 'delete.png' %}">Delete Audio Content</strong></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+{% endblock %}

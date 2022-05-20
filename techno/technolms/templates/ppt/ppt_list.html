@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">PPTs Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+    <form>
+
+        </form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">{{classes.section}}</h3>
+                </a></strong>
+                <ul>
+                    {% for ppt in ppts %}
+
+                     <li class="row mt-3"> <h5>PPT Title:</h5><h5 class="ml-2"><a href="{% url 'ppt-detail' ppt.id %}">{{ppt.title}}</a></h5></li>
+                    <p>{{ppt.description}}</p>
+                        <div>
+                            <a href="{% url 'ppt-detail' ppt.id %}">
+
+                                <img class="ml-4 mb-2 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'ppt.png' %}">
+                                </a>
+                        </div>
+                                <a href="{{ppt.ppt.url}}" class="btn btn-primary ml-3 mb-2 mt-4 mr-4"
+                                   target="_blank">Download PPT</a>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

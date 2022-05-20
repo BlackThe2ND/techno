@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h2 class="container">Delete Lesson</h2>
+<br/><br/>
+<br/>
+<form method="post" class="container">
+    <h3>WARNING! Delete {{lessons.title}} ?</h3>
+      {% csrf_token %}
+    <strong> Are your sure you want to Delete? </strong> <br/>
+    <button type="submit" class="btn btn-secondary">Delete Lesson</button>
+    <a href="{% url 'lesson-details' lessons.id %}">Cancel</a>
+</form>
+{% endblock %}

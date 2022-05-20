@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <br>
+    <center><h1 class="card-text container">Learning Style Score Distribution</h1></center>
+    <h1><a href="{% url 'home' %}" class="btn btn-primary">Go to HomePage</a></h1>
+<div class="container ">
+
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" align="centre " style="width: 32rem; border:5px black solid">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Active/Reflective</h5>
+
+                <!--<p class="card-text">Percentage: {{percent1}}%</p>-->
+                <p class="card-text">a answers: {{a1}}</p>
+                <p class="card-text">b answers: {{b1}}</p>
+                <p class="card-text">Total questions: {{total1}}</p>
+
+                <h5>ILS questionnaires!</h5>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container ">
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" align="centre " style="width: 32rem; border:5px black solid">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Sensing/Intuitive</h5>
+
+                <!--<p class="card-text">Percentage: {{percent2}}%</p>-->
+                <p class="card-text">a answers: {{a2}}</p>
+                <p class="card-text">b answers: {{b2}}</p>
+                <p class="card-text">Total questions: {{total2}}</p>
+                <h5>ILS questionnaires!</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container ">
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" align="centre " style="width: 32rem; border:5px black solid">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Visual/Verbal</h5>
+                <p class="card-text">a answers: {{a3}}</p>
+                <p class="card-text">b answers: {{b3}}</p>
+                <p class="card-text">Total questions: {{total3}}</p>
+                <h5>ILS questionnaires!</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container ">
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" align="centre " style="width: 32rem; border:5px black solid">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Sequential/Global</h5>
+
+                <!--<p class="card-text">Percentage: {{percent2}}%</p>-->
+                <p class="card-text">a answers: {{a4}}</p>
+                <p class="card-text">b answers: {{b4}}</p>
+                <p class="card-text">Total questions: {{total4}}</p>
+                <h5>ILS questionnaires!</h5>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+{% endblock %}

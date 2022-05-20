@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class= "login--wrapper">
+<div class="col-md-6">
+
+<center><h3 class="">CREATE CHAPTER {{class_detail.section}} {{class_detail.subject}}</h3></center>
+
+<div class="card card-body">
+<form method="post" class="mb-5">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <div>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+    <a href="{% url 'home' %}">Cancel</a>
+    </div>
+</form>
+    </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<table>
+{% for chapters in chapter %}
+{% if chapters.id == chapter_identity %}
+
+    {% for lessons in chapters.lesson_set.all %}
+
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <img class="card-img-top" src="{% static 'lala.jpg' %}">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">Chapter:{{chapter_identity}}</h3>
+                </a></strong>
+                <ul>
+
+                <li><h5><a href="{#}">{{ lessons.title}}</a></h5></li>
+                <p>{{ lessons.description}}</p>
+
+                    </ul>
+                <a href="{#}"
+                   class="btn btn-primary">
+                    Go to Chapters (EDIT ITO PLEASE)
+                </a>
+                <a href="{#}">Edit</a>
+                <a class="ml-3" href="{#}">Delete</a>
+            </div>
+        </div>
+    </div>
+
+
+    {% endfor %}
+    {% else %}
+    AYAW TALAGA SIR
+{% endif %}
+{% endfor %}
+</form>
+</table>
+{% endblock %}

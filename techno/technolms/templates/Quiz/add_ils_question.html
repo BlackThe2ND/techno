@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if submitted %}
+        <center><h1>Your Add Question is Successful!</h1></center>
+        <br>
+        <div class="row d-flex justify-content-center">
+            <center><a href="{% url 'home' %}" class="btn btn-primary mr-3">Back</a></center>
+            <center><a href="{% url 'ils-add' %}" class="btn btn-primary">Create Another Question</a></center>
+            </div>
+{% else %}
+<div class="container row login--wrapper">
+    <div class="col-md-6">
+        <div class="row"><h1>Add ILS Question</h1>
+        </div>
+        <div class="card card-body">
+           <form action="" method="POST">
+              {% csrf_token %}
+                {{form.as_p}}
+                <br>
+             <input type="submit" name="Submit">
+             </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endif %}
+{% endblock %}

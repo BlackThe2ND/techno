@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<center><h2 class="container">Delete PDF</h2></center>
+<br/><br/>
+<br/>
+<form method="post" class="container">
+    <center><h3>WARNING! Delete {{pdfs.title}} ?</h3>
+      {% csrf_token %}
+    <strong> Are your sure you want to Delete? </strong> <br/>
+    <button type="submit" class="btn btn-secondary">Delete PDF</button>
+        <a href="{% url 'pdf-detail' pdfs.id %}">Cancel</a></center>
+</form>
+{% endblock %}

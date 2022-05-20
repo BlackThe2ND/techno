@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <br>
+<center><p><strong><h1>Adaptive Online Education System In The World</h1></strong></p></center>
+<br>
+<center><p><strong><h2>We Make Things Happen For You</h2></strong></p></center>
+    <div align="right"><h3>Scroll Down</h3></div>
+<center><img src="{% static 'Student 2.png' %}" alt="moses" class="card-img-top"></center>
+    <style type="text/css">
+    #bg{
+        background-repeat: repeat;
+        background-position: center;
+        background-size: 100%;
+    }
+
+</style>
+</head>
+<body>
+<div class="container">
+    <br>
+    <br>
+<h1 style="color: #00000" class="container d-flex justify-content-center">CLASSROOMS</h1>
+{% if user.is_superuser %}
+<a href="{% url 'classroom-create' %}" class="btn btn-primary ml-2"><h5><i class="fa fa-plus-circle"></i> Create New Classroom</h5></a>
+<a href="{% url 'edit-profile' user.id %}" class="btn btn-primary"><h5>Edit Profile</h5></a>
+{% endif %}
+</div>
+<br>
+<div class="d-flex flex-wrap ml-2">
+<table>
+{% for classes in classroom %}
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container" style="border:1px black solid">
+
+            <img class="card-img-top" src="{% static 'physics.png' %}">
+            <div class="card-body">
+                <strong><h2 class="card-title">{{classes.section}}-{{classes.subject}}</h2>
+                </strong>
+                <br>
+        {% if chapt_result == 0 %}
+                    {% for chapter in classes.chapter_set.all %}
+                    <h3><a href="{% url 'chapter-details' chapter.id %}">Chapter - {{chapter.title}}</a></h3>
+                    <p>{{chapter.description}}</p>
+                    {% endfor %}
+
+        {% else %}
+
+        {% if chapt_result < 70.0 %}
+                <center>
+                <div style="color:red">
+                <h4>Please take the modified learning path before proceeding to the next chapter!</h4>
+                <h4>Requirements to proceed next chapter: ABOVE 70% in your last Chapter Quiz</h4>
+                    </div>
+                    </center>
+                <br>
+
+                {% for chapter in classes.chapter_set.all %}
+                    <h3><a href="{% url 'chapter-details' chapter.id %}">Chapter - {{chapter.title}}</a></h3>
+                    <p>{{chapter.description}}</p>
+
+
+                {% endfor %}
+
+        {% else %}
+                {% for chapter in classes.chapter_set.all %}
+                    <h5><a href="{% url 'chapter-details' chapter.id %}">Chapter - {{chapter.title}}</a></h5>
+                    <p>{{chapter.description}}</p>
+                {% endfor %}
+
+        {% endif %}
+        {% endif %}
+                {% if user.is_superuser %}
+                <a href="{% url 'chapter-create2' classes.pk %}"
+                class="btn btn-primary container mt-4"><i class="fa fa-plus-circle"></i> Create New Chapter</a>
+                <a href="{% url 'class-edit' classes.pk %}">
+                    <strong><img width="20" src="{% static 'edit.png' %}">Edit Classroom</strong></a>
+                <a class="ml-3" href="{% url 'class-delete' classes.pk %}">
+                    <strong><img style="opacity:0.6" width="20" src="{% static 'delete.png' %}">Delete Classroom</strong></a>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+</form>
+</table>
+</div>
+</body>
+{% endblock %}

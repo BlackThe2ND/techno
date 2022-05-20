@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <style>
+        .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.2s;
+        }
+        .card:hover {
+        box-shadow: 8px 8px 10px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+        padding: 4px 16px;
+        }
+        img {
+        border-radius: 5px 5px 5px 5px;
+        }
+    </style>
+</head>
+<body>
+<center><h1 class="container">Image (Diagrams) Content</h1></center>
+
+<div class="">
+    {% if user.is_superuser %}
+    <div class="container">
+    <a href="{% url 'image-create' images.id %}"
+    class="btn btn-primary container container">Create New Image Content</a>
+    </div>
+    {% endif %}
+    <form>
+    {{ form.as_p }}
+        </form>
+    <div class="row d-flex justify-content-sm-center">
+        <div class="card mb-2 container">
+            <div class="card-body">
+
+                <h2>{{images.title}}</h2>
+                <p>{{images.description}}</p>
+
+                    <div class="col d-flex justify-content-sm-center">
+
+                        <div>
+                            <img width="800" src="{{images.img.url}}">
+                        </div>
+                        </div>
+
+                <hr>
+                {% if user.is_superuser %}
+                <a class="ml-3" href="{% url 'image-edit' images.id %}"><strong><img width="20" src="{% static 'edit.png' %}">Edit Image Content</strong></a>
+                <a class="ml-2" href="{% url 'image-delete' images.id %}"><strong><img style="opacity:0.6" width="20" src="{% static 'delete.png' %}">Delete Image Content</strong></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+{% endblock %}

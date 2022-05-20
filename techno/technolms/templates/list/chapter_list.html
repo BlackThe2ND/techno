@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">Chapter Lists</h1>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+    <tr>
+
+<form>
+<form method="post" action="views.new_chapter"></form>
+</form>
+    <div class="col-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">{{classes.section}}</h3>
+                </a></strong>
+                <ul>
+                    {% for chapt in chapter_list %}
+                     <li class="row mt-3"> <h5>Chapter Title:</h5><h5 class="ml-2"><a href="{% url 'chapter_details' chapt.id %}">  {{vid.title}}</a></h5></li>
+                    <p>{{chapt.description}}</p>
+                    {% endfor %}
+                        <a href="{% url 'chapter-create' chapter_list.pk %}"
+                        class="btn btn-primary">
+                            Create New Chapter
+                </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}

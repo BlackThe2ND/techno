@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body>
+<h1 class="container">Create New Class with Chapter</h1>
+<div class="container">
+<div class="d-flex flex-wrap ml-2">
+<form method="post" action="">
+        {% csrf_token %}
+        {{ class_form }}
+        {{ chapter_form }}
+    <button class="btn btn-primary">Create Classroom</button>
+
+</form>
+    </div>
+</div>
+</body>
+{% endblock %}

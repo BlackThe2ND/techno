@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<center><h2 class="container">Delete Chapter</h2></center>
+<br/><br/>
+<br/>
+<form method="post" class="container">
+    <center><h3>WARNING! Delete {{chapters.title}} ?</h3></center>
+      {% csrf_token %}
+    <center><strong> Are your sure you want to Delete? </strong> <br/></center>
+    <br>
+   <center> <button type="submit" class="btn btn-secondary">Delete Chapter</button>
+       <a href="{% url 'chapter-details' chapters.id %}">Cancel</a></center>
+</form>
+{% endblock %}

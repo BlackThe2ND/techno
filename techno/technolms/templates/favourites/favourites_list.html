@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <style>
+        .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.2s;
+        }
+        .card:hover {
+        box-shadow: 8px 8px 10px 10px rgba(0,0,0,0.2);
+        }
+        .container {
+        padding: 4px 16px;
+        }
+
+    </style>
+</head>
+<body>
+<br>
+<br>
+
+<div class="d-flex flex-wrap ml-2">
+<table class="container">
+
+    <form>
+    {{ form.as_p }}
+    </form>
+    <div class="row-md-4, ml-6 container">
+        <div class="card mb-2 container">
+            <img class="card-img-top" src="{% static 'favourites.png' %}">
+            <div class="card-body">
+                <strong><a href="{#}"><h3 class="card-title">{{classes.section}}</h3>
+                </a></strong>
+
+                    <div class="row">
+                    <h2>{{lesson_details.title}}</h2>
+                    <h4 class="ml-3 mt-2">{{lesson_details.description}}</h4></div>
+
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for vid in new %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'video-detail' vid.id %}">{{vid.title}}</a></h5>
+                                <p>{{vid.description}}</p>
+                                        <div><a href="{% url 'favourite_add1' vid.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                        <div class="">
+                                <video class="mt-2 mb-2 mr-2 ml-2" width="400" src="{{vid.vid.url}}" controls></video>
+
+                            </div>
+                             </div>
+                            </div>
+                    {% endfor %}
+                    </div>
+                    <a href="{% url 'video-list'  %}"
+                            class="btn btn-primary">
+                            List of Videos</a>
+                        </div>
+
+                <br>
+                     <div class="col">
+                         <div class="row d-flex justify-content-sm-stretch">
+                    {% for img in new2 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+
+                                <h5 class="mt-2"><a href="{% url 'image-detail' img.id %}">{{img.title}}</a></h5>
+                                <p>{{img.description}}</p>
+                            <div><a href="{% url 'favourite_add2' img.id %}"
+                                    class="btn btn-outline-primary">Remove</a></div>
+                            <div class="">
+                                <img class="mt-2 mb-2 mr-2 ml-2 row" width="400" src="{{img.img.url}}" >
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                            </div>
+                             </div>
+                             </div>
+                    {% endfor %}
+                             </div>
+                        <a href="{% url 'image-list' %}"
+                            class="btn btn-primary">
+                            List of Images</a>
+                     </div>
+                <br>
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for pdf in new3 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'pdf-detail' pdf.id %}">{{pdf.title}}</a></h5>
+                                <p>{{pdf.description}}</p>
+                        <div><a href="{% url 'favourite_add3' pdf.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                                 <div class="">
+                                <img class="ml-4 mb-2 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'pdf.png' %}">
+                                </div>
+                        <div class="row">
+                            <a href="{{pdf.pdf.url}}" target="_blank" class="btn btn-primary mt-2 mb-2 mr-2 ml-4">Download PDF</a>
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                                </div>
+                    {% endfor %}
+                            </div>
+                                        <a href="{% url 'pdf-list' %}"
+                            class="btn btn-primary">
+                            List of PDFS</a>
+                    </div>
+                <br>
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for audio in new4 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'audio-detail' audio.id %}">{{audio.title}}</a></h5>
+                                <p>{{audio.description}}</p>
+                        <div><a href="{% url 'favourite_add4' audio.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                                 <div class="">
+                                <img class="ml-2 mb-2 mt-2 mr-2" style="opacity: 0.2" height="200" width="250" src="{% static 'audio.png' %}">
+                                </div>
+                        <div class="">
+                            <a href="{{audio.aud.url}}" class="btn btn-primary mb-3" target="_blank">Play Audio Recording</a>
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                                </div>
+                    {% endfor %}
+                        </div>
+                        <a href="{% url 'audio-list' %}"
+                            class="btn btn-primary">
+                            List of Audios</a>
+                    </div>
+                <br>
+
+                <div class="col">
+                    <div class="row d-flex justify-content-sm-stretch">
+                    {% for ppt in new5 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'ppt-detail' ppt.id %}">{{ppt.title}}</a></h5>
+                                <p>{{ppt.description}}</p>
+                        <div><a href="{% url 'favourite_add5' ppt.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                        <div class="">
+                                <img class="ml-4 mb-2 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'ppt.png' %}">
+                                </div>
+                        <div class="">
+                            <a href="{{ppt.ppt.url}}" class="btn btn-primary mt-2 mb-2 mr-2 ml-3" target="_blank">Download PPT</a>
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                                </div>
+                    {% endfor %}
+                        </div>
+                            <a href="{% url 'ppt-list' %}"
+                            class="btn btn-primary">
+                            List of PPTs</a>
+                </div>
+                <br>
+
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for gif in new6 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'gif-detail' gif.id %}">{{gif.title}}</a></h5>
+                                <p>{{gif.description}}</p>
+                        <div><a href="{% url 'favourite_add6' gif.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                        <div class="row">
+                            <img class="mt-2 mb-2 mr-2 ml-2 row" width="400" src="{{gif.gif.url}}">
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                                </div>
+                    {% endfor %}
+                            </div>
+                            <a href="{% url 'gif-list' %}"
+                            class="btn btn-primary">
+                            List of GIFs</a>
+                    </div>
+                <br>
+
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for exercise in new7 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'exercise-detail' exercise.id %}">{{exercise.title}}</a></h5>
+                                <p>{{exercise.description}}</p>
+                        <div><a href="{% url 'favourite_add7' exercise.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                        <div class="">
+                                <img class="ml-5 mb-1 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'exercise.png' %}">
+                                </div>
+                        <div class="">
+                            <a href="{{exercise.exercise.url}}" class=" btn btn-primary mt-2 mb-2 mr-2 ml-4">View Exercise (PDF)</a>
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                        </div>
+                    {% endfor %}
+                        </div>
+                            <a href="{% url 'exercise-list' %}"
+                            class="btn btn-primary">
+                            List of Exercises</a>
+                    </div>
+                <br>
+
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for example in new8 %}
+                        <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'example-detail' example.id %}">{{example.title}}</a></h5>
+                                <p>{{example.description}}</p>
+                        <div><a href="{% url 'favourite_add8' example.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                                 <div class="">
+                                <img class="ml-4 mb-1 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'example.png' %}">
+                                </div>
+                        <div class="">
+                            <a href="{{example.example.url}}" class=" btn btn-primary mt-2 mb-2 mr-2 ml-4">View Example (PDF)</a>
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                        </div>
+                    {% endfor %}
+                        </div>
+                            <a href="{% url 'example-list' %}"
+                            class="btn btn-primary">
+                            List of Examples</a>
+                    </div>
+                <br>
+
+                    <div class="col">
+                        <div class="row d-flex justify-content-sm-stretch">
+                    {% for tore in new9 %}
+                            <div class="card mb-3">
+                             <div class="card-body">
+                            <h5 class="mt-2"><a href="{% url 'tore-detail' tore.id %}">{{tore.title}}</a></h5>
+                                <p>{{tore.description}}</p>
+                        <div><a href="{% url 'favourite_add9' tore.id %}"
+                                        class="btn btn-outline-primary">Remove</a></div>
+                                 <div class="">
+                                <img class="ml-4 mb-2 mt-4 mr-4" style="opacity: 0.2" height="100" src="{% static 'tore.png' %}">
+                                </div>
+                        <div class="">
+                            <a href="{{tore.tore}}" class="btn btn-primary mt-2 mb-2 mr-2 ml-4" target="_blank">Click the Link</a>
+                                <!--<video width="600" src="{% static 'videolang' %}"></video>-->
+                        </div>
+                    </div>
+                                </div>
+                    {% endfor %}
+                            </div>
+                            <a href="{% url 'tore-list' %}"
+                            class="btn btn-primary">
+                            Topic Lists and References (LINKS)</a>
+                    </div>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</table>
+</div>
+</body>
+{% endblock %}
